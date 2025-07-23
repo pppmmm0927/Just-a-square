@@ -85,11 +85,20 @@
                 // 바닥(아래) 충돌: 네 꼭짓점 중 y가 화면 하단보다 크면
                 let overBottom = corners.filter(pt => pt.y > window.innerHeight).length;
                 if (overBottom > 0) {
-                    // 눕히기: 각도 0, 위치 바닥에 맞춤
-                    angle = 0;
+                    // 바닥에 튕길 때 반사각을 7도 더 크게
                     y = window.innerHeight - size;
-                    vy *= -bounce;
-                    vAngle = 0;
+                    // 속도를 각도로 변환
+                    const speed = Math.sqrt(vx * vx + vy * vy) * bounce;
+                    let angleRad = Math.atan2(vy, vx);
+                    // 입사각(아래쪽 충돌)이면 y축 반전 + 7도(0.122rad) 추가
+                    if (vy > 0) {
+                        angleRad = -angleRad + 0.122;
+                    } else {
+                        angleRad = -angleRad - 0.122;
+                    }
+                    vx = speed * Math.cos(angleRad);
+                    vy = speed * Math.sin(angleRad);
+                    vAngle *= bounce;
                     bounced = true;
                 }
                 // 천장(위) 충돌: 기존 방식(회전 보정 X)
