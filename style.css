@@ -1,0 +1,61 @@
+/* 마우스 커서 잔상 효과 */
+.cursor-trail-dot {
+    position: fixed;
+    left: 0; top: 0;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(circle at 30% 30%, #6a11cb 60%, #38f9d7 100%);
+    box-shadow: 0 0 12px 2px #6a11cb55;
+    z-index: 9999;
+    transition: background 0.2s;
+    will-change: transform;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background: #fff;
+    padding: 2rem 3rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.timer-display {
+    font-size: 3rem;
+    margin: 1.5rem 0;
+    letter-spacing: 2px;
+    color: #333;
+}
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+input[type="number"] {
+    width: 60px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}
+button {
+    padding: 0.5rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #0078d4;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+button:hover {
+    background: #005fa3;
+}
